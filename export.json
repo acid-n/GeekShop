@@ -1,0 +1,9 @@
+[
+{"model": "mainapp.productcategory", "pk": 1, "fields": {"name": "диваны", "description": ""}},
+{"model": "mainapp.productcategory", "pk": 2, "fields": {"name": "стулья", "description": ""}},
+{"model": "mainapp.productcategory", "pk": 3, "fields": {"name": "столы", "description": "отличные столы"}},
+{"model": "mainapp.productcategory", "pk": 4, "fields": {"name": "Кровати", "description": "Лучшие кровати в мире"}},
+{"model": "mainapp.product", "pk": 1, "fields": {"category": 1, "name": "диван1", "image": "", "short_desc": "", "description": "", "price": "0.00", "quantity": 0}},
+{"model": "mainapp.product", "pk": 2, "fields": {"category": 1, "name": "диван2", "image": "", "short_desc": "", "description": "", "price": "0.00", "quantity": 0}},
+{"model": "mainapp.product", "pk": 3, "fields": {"category": 1, "name": "Диван3", "image": "", "short_desc": "", "description": "", "price": "0.00", "quantity": 0}}
+]
