@@ -1,0 +1,15 @@
+[
+  {"model": "mainapp.productcategory", "fields": {"name": "диваны", "description": "хорошие диваны"}},
+  {"model": "mainapp.productcategory", "fields": {"name": "стулья", "description": "отличные стулья"}},
+  {"model": "mainapp.productcategory", "fields": {"name": "столы", "description": "отличные столы"}},
+  {"model": "mainapp.productcategory", "fields": {"name": "кровати", "description": "лучшие кровати в мире"}},
+  {"model": "mainapp.productcategory", "fields": {"name": "тумбы", "description": "самые красивые тумбы"}},
+  {"model": "mainapp.product", "fields": {"category": 1, "name": "диван1", "image": "", "short_desc": "", "description": "", "price": "0.00", "quantity": 0}},
+  {"model": "mainapp.product", "fields": {"category": 1, "name": "диван2", "image": "", "short_desc": "", "description": "", "price": "0.00", "quantity": 0}},
+  {"model": "mainapp.product", "fields": {"category": 1, "name": "Диван3", "image": "", "short_desc": "", "description": "", "price": "0.00", "quantity": 0}},
+  {"model": "mainapp.product", "fields": {"category": 4, "name": "Кровать 22", "image": "", "short_desc": "Очень хорошая кровать", "description": "Самая хорошая кровать которая может быть придумана в этом мире. \r\nПолная, классная, мега супер пупер крутая.\r\nСамый новый материал.", "price": "2500.00", "quantity": 10}},
+  {"model": "mainapp.product", "fields": {"category": 5, "name": "Розовая тумба", "image": "", "short_desc": "Красивая розовая тумба", "description": "Самая красивая розовая тумба на свете.", "price": "5000.00", "quantity": 10}},
+  {"model": "mainapp.product", "fields": {"category": 1, "name": "Диван №4", "image": "", "short_desc": "Это четвертый диван", "description": "Очень модный четвертый диван, который есть у нас в наличии.", "price": "25000.00", "quantity": 10}},
+  {"model": "mainapp.product", "fields": {"category": 1, "name": "Диван Красный", "image": "", "short_desc": "Красный и очень модный диван", "description": "Это очень красивый, красный и стильный диван.", "price": "35000.50", "quantity": 20}},
+  {"model": "mainapp.product", "fields": {"category": 1, "name": "Диван Ультрамодный", "image": "", "short_desc": "Ультрамодный крутой диван", "description": "Мега новый, мега ультрановый, крутой, стильный диван.", "price": "40000.90", "quantity": 5}}
+]
