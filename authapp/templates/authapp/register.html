@@ -1,0 +1,37 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+
+
+{% block menu %}
+    <div class="hero-white">
+        <div class="header clearfix">
+            <a href="/" class="logo"></a>
+            {% include 'mainapp/includes/inc_main_menu.html' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
+            <h1>
+                {{ title|title }}
+            </h1>
+            <br>
+            <form class="form-group" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ register_form.as_p }}
+                <br>
+                <button type="submit" class="btn btn-primary">Регистрация</button>
+            </form>
+            <a class="btn btn-link" href="{% url 'auth:login' %}">вход</a>
+        </div>
+        <div class="col-sm">
+
+        </div>
+    </div>
+{% endblock %}

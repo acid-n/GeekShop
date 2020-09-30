@@ -21,24 +21,13 @@
                 {{ title|title }}
             </h1>
             <br>
-            <form class="form-group" action="{% url 'auth:login' %}" method="post">
+            <form class="form-group" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {% if login_form.non_field_errors %}
-                    <ul>
-                        {% for error in login_form.non_field_errors %}
-                            <li><em>{{ error|escape }}</em></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                {% for field in login_form.visible_fields %}
-                    <p>
-                        {{ field.label_tag }}<br>{{ field }}<br>{{ field.help_text }}
-                    </p>
-                {% endfor %}
+                {{ edit_form.as_p }}
                 <br>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            <a class="btn btn-link" href="{% url 'auth:register' %}">регистрация</a>
+            <a class="btn btn-link" href="{% url 'main' %}">на главную</a>
         </div>
         <div class="col-sm">
 
