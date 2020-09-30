@@ -1,0 +1,23 @@
+{% extends 'authapp/base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm">
+
+        </div>
+        <div class="col-sm">
+            <h1>
+                {{ title|title }}
+            </h1>
+            <form class="form-signin" action="{% url 'auth:login' %}" method="post">
+                {% csrf_token %}
+                {{ login_form.as_p }}
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-sm">
+
+        </div>
+    </div>
+{% endblock %}
