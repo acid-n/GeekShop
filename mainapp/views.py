@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from mainapp.models import Product, ProductCategory
+from mainapp.models import Product, ProductCategory, Contacts
 
 links_menu = [
     {'href': 'products_all', 'name': 'все'},
@@ -29,7 +29,10 @@ def products(request, pk=None):
 
 
 def contact(request):
+    title = 'контакты'
+    contacts_list = Contacts.objects.all()[:3]
     content = {
-        'title': 'контакты',
+        'title': title,
+        'contacts': contacts_list
     }
     return render(request, 'mainapp/contact.html', content)

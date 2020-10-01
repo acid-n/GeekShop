@@ -28,3 +28,18 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.category.name})'
+
+
+class Contacts(models.Model):
+    name = models.CharField(max_length=64, verbose_name="название", unique=True)
+    city = models.CharField(max_length=64, verbose_name="город")
+    email = models.CharField(max_length=64, verbose_name="email", unique=True)
+    phone = models.CharField(max_length=64, verbose_name="телефон", unique=True)
+    address = models.CharField(max_length=128, verbose_name="адрес", blank=True)
+
+    class Meta:
+        verbose_name = "контакты"
+        verbose_name_plural = "контакты"
+
+    def __str__(self):
+        return f'{self.name} ({self.city})'
