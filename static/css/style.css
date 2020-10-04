@@ -140,9 +140,12 @@ html, body {
 	width: 23px;
 	height: 23px;	
 	background-image: url(/static/img/basket.png);
+	background-repeat: no-repeat;
 	position: absolute;
 	top: 63px;
-	left: 1210px;
+	left: 1200px;
+	text-decoration: none;
+	color: #555;
 }
 
 .clearfix:after {
