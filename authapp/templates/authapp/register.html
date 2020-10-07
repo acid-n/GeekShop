@@ -1,37 +1,32 @@
 {% extends 'authapp/base.html' %}
 {% load static %}
 
-
-
 {% block menu %}
-    <div class="hero-white">
-        <div class="header clearfix">
-            <a href="/" class="logo"></a>
-            {% include 'mainapp/includes/inc_main_menu.html' %}
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+        <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            {% include 'mainapp/includes/inc_menu.html' %}
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
-    </div>
+    </nav>
+
 {% endblock %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-sm">
-
-        </div>
-        <div class="col-sm">
-            <h1>
-                {{ title|title }}
-            </h1>
-            <br>
-            <form class="form-group" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ register_form.as_p }}
-                <br>
-                <button type="submit" class="btn btn-primary">Регистрация</button>
-            </form>
-            <a class="btn btn-link" href="{% url 'auth:login' %}">вход</a>
-        </div>
-        <div class="col-sm">
-
-        </div>
+    <div class="text-center my_form">
+        <form class="form-signin" action="{% url 'auth:register' %}" method="post" enctype="multipart/form-data">
+            <h1 class="h3 mb-3 font-weight-normal">{{ title|title }}</h1>
+            {% csrf_token %}
+            {{ register_form.as_p }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Регистрация</button>
+            <a class="btn btn-link" href="{% url 'auth:login' %}">войти</a>
+        </form>
     </div>
 {% endblock %}

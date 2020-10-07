@@ -8,10 +8,14 @@ from django.http import HttpResponseRedirect
 
 def login(request):
     title = 'авторизация'
-    login_form = ShopUserLoginForm(data=request.POST)
+    login_form = ShopUserLoginForm(data=request.POST or None)
+
+    next_url = request.GET.get('next', '')
+
     content = {
         'title': title,
-        'login_form': login_form
+        'login_form': login_form,
+        'next': next_url,
     }
 
     # проверяю авторизован или нет, если авторизован, то на главную перекидываю, если нет то показываю форму
@@ -24,6 +28,8 @@ def login(request):
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
+                if 'next' in request.POST.keys():
+                    return HttpResponseRedirect(request.POST['next'])
                 return HttpResponseRedirect(reverse('main'))
 
         return render(request, 'authapp/login.html', content)

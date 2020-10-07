@@ -1,0 +1,35 @@
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item {% if request.resolver_match.url_name == 'main' %}active{% endif %}">
+        <a class="nav-link" href="{% url 'main' %}">
+            домой <span class="sr-only">(current)</span>
+        </a>
+    </li>
+    <li class="nav-item {% if request.resolver_match.url_name == 'products' %}active{% endif %}">
+
+        <a href="{% url 'products:products' %}"
+           class="nav-link">
+            продукты
+        </a>
+    </li>
+    <li class="nav-item {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">
+
+        <a href="{% url 'contact' %}"
+           class="nav-link">
+            контакты
+        </a>
+    </li>
+    {% if user.is_authenticated %}
+        <li class="nav-item {% if request.resolver_match.url_name == 'edit' %}active{% endif %}">
+            <a href="{% url 'auth:edit' %}" class="nav-link">
+                {% if user.first_name %}
+                    {{ user.first_name }}
+                {% else %}
+                    пользователь
+                {% endif %}
+            </a>
+        </li>
+        <li class="nav-item"><a href="{% url 'auth:logout' %}" class="nav-link">выход</a></li>
+    {% else %}
+        <li class="nav-item"><a href="{% url 'auth:login' %}" class="nav-link">вход</a></li>
+    {% endif %}
+</ul>

@@ -1,37 +1,17 @@
 {% extends 'authapp/base.html' %}
-
 {% load static %}
 
-{% block menu %}
-    <div class="hero-white">
-        <div class="header clearfix">
-            <a href="/" class="logo"></a>
-            {% include 'mainapp/includes/inc_main_menu.html' %}
-        </div>
-    </div>
-{% endblock %}
-
 {% block content %}
-    <div class="row">
-        <div class="col-sm">
-
-        </div>
-        <div class="col-sm">
-            <h1>
-                {{ title|title }}
-            </h1>
-            <br>
-            <form class="form-group" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ edit_form.as_p }}
-                <br>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+    <div class="text-center my_form">
+        {% if user.avatar %}
+            <div class="user_avatar"><img src="/media/{{ user.avatar }}"></div>
+        {% endif %}
+        <form class="form-signin" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+            <h1 class="h3 mb-3 font-weight-normal">{{ title|title }}</h1>
+            {% csrf_token %}
+            {{ edit_form.as_p }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Сохранить</button>
             <a class="btn btn-link" href="{% url 'main' %}">на главную</a>
-        </div>
-        <div class="user_avatar"><img src="/media/{{ user.avatar }}"></div>
-        <div class="col-sm">
-
-        </div>
+        </form>
     </div>
 {% endblock %}

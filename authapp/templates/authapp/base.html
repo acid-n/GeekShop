@@ -1,9 +1,12 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en" class="h-100">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Nikolay Shapovalov">
     <title>
         {% block title %}
             {{ title|title }}
@@ -11,28 +14,60 @@
     </title>
     {% block css %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/my_css.css' %}">
         <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
     {% endblock %}
 
     {% block js %}
     {% endblock %}
 </head>
-<body>
-<div class="container">
+<body class="d-flex flex-column h-100">
+
+<header>
+    <!-- Fixed navbar -->
     {% block menu %}
-
+        <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
+            <a class="navbar-brand" href="/"><img src="/static/img/logo.png"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                {% include 'mainapp/includes/inc_menu.html' %}
+                <img src="/static/img/basket.png">
+                <a href="{% url 'basket:basket' %}" class="nav-link">
+                    {% if basket %}{{ basket|length }}{% endif %}
+                </a>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
     {% endblock %}
+</header>
 
-    {% block content %}
+<!-- Begin page content -->
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        {% block content %}
 
-    {% endblock %}
+        {% endblock %}
+    </div>
+</main>
 
-    <div class="clr"></div>
+<footer class="footer mt-auto py-3">
+    <div class="container">
+        <span class="text-muted">Place sticky footer content here.</span>
+    </div>
+</footer>
 
-</div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
 
+<script src="/static/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
