@@ -7,7 +7,7 @@
         {% include 'mainapp/includes/inc_categories_menu.html' %}
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col mb-2">
             <div class="details-slider">
 
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="col mb-2">
             <div class="details-products">
                 <div class="description">
                     <h2 class="font-weight-bolder text-center">{{ hot_product.name|title }}</h2>
@@ -56,30 +56,49 @@
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col mb-2">
             <h2 class="font-weight-bold">Похожие продукты</h2>
         </div>
-        <div class="col text-center">
+        <div class="col text-center mb-2">
             <a class="btn btn-light btn-lg btn-block" href="#">показать все <img src="{% static '/img/arrow.png' %}"
                                                                                  alt=""></a>
         </div>
     </div>
 
-    <div class="row">
+
+    <div class="row row-cols-1 row-cols-md-3">
         {% for product in same_products %}
-            <div class="col">
-                <a href="{% url 'products:product' product.pk %}"><img src="/media/{{ product.image }}" alt="{{ product.short_desc }}">
-                    <div class="text">
-                        <img src="/static/img/icon-hover.png" alt="img">
-                        <h3>Категория: {{ product.category.name|title }}</h3>
-                        <h4>Название: {{ product.name|title }}</h4>
-                        <p>Описание: {{ product.description }}</p>
-                        <p>Цена: {{ product.price }}</p>
-                        <p>На складе: {{ product.quantity }}</p>
+            <div class="col mb-4">
+                <div class="card h-100">
+                    <a href="{% url 'products:product' product.pk %}">
+                        <img src="/media/{{ product.image }}" class="card-img-top" alt="{{ product.short_desc }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{% url 'products:product' product.pk %}">
+                                {{ product.name|title }}
+                            </a>
+                        </h5>
+                        <p class="card-text">{{ product.short_desc }}</p>
+                        <p class="card-text">
+                            <a href="{% url 'products:product' product.pk %}" class="stretched-link text-danger" style="position: relative;">
+                                {{ product.price }}
+                            </a>
+                        </p>
                     </div>
-                </a>
+                    <div class="card-footer">
+                            <small class="text-muted">Категория:
+                            <a href="{% url 'products:category' product.category.pk %}" class="text-warning stretched-link">
+                                {{ product.category.name|title }}
+                            </a>
+                                </small>
+
+                    </div>
+                </div>
             </div>
         {% endfor %}
     </div>
+
+
 
 {% endblock %}

@@ -25,7 +25,9 @@
         <form class="form-signin" action="{% url 'auth:login' %}" method="post">
             <h1 class="h3 mb-3 font-weight-normal">{{ title|title }}</h1>
             {% csrf_token %}
-            <input name="next" type="hidden" value="{{ next }}">
+            {% if next %}
+                <input name="next" type="hidden" value="{{ next }}">
+            {% endif %}
             {% for field in login_form.visible_fields %}
                 {{ field.label_tag }}
                 {{ field }}

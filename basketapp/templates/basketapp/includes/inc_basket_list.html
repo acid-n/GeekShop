@@ -1,21 +1,44 @@
-{% for item in basket %}
-    <div class="">
-        <img src="/media/{{ item.product.image }}">
-        <span class="">{{ item.product.category.name }}</span>
-        <span class="">{{ item.product.name }}</span>
-        <span class="">{{ item.product.price }}</span>
-        <input name="{{ item.pk }}" value="{{ item.quantity }}" min="0" type="number">
-        <span class="">{{ item.product_cost }}</span>
-        <a href="{% url 'basket:remove' item.pk %}" class="btn btn-danger">X</a>
-    </div>
-{% endfor %}
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Фотография</th>
+        <th scope="col">Категория</th>
+        <th scope="col">Название</th>
+        <th scope="col">Цена</th>
+        <th scope="col">Количество</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">Удалить</th>
+    </tr>
+    </thead>
+    <tbody>
 
-{% if basket %}
-    <div class="">
-        В корзине {{ basket.0.total_quantity }} товаров, общей стоимостью {{ basket.0.total_cost }} рублей.
-    </div>
-{% else %}
-    <div class="">
-        В корзине пока пусто :(
-    </div>
-{% endif %}
+    {% for item in basket %}
+        <tr>
+            <td><img src="/media/{{ item.product.image }}" width="150px" class="img-thumbnail"></td>
+            <td>{{ item.product.category.name }}</td>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price }}</td>
+            <td><input name="{{ item.pk }}" value="{{ item.quantity }}" min="0" type="number"></td>
+            <td>{{ item.product_cost }}</td>
+            <td><a href="{% url 'basket:remove' item.pk %}" class="btn btn-danger">X</a></td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+<div class="row">
+    {% if basket %}
+        <div class="col mb-4">
+            <h2>
+                В корзине {{ basket.0.total_quantity }} товара/ов, общей стоимостью {{ basket.0.total_cost }} рублей.
+            </h2>
+        </div>
+    {% else %}
+        <div class="col mb-4">
+            <h2>
+                В корзине пока пусто :(
+            </h2>
+        </div>
+    {% endif %}
+</div>
