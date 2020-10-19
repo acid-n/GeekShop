@@ -3,6 +3,37 @@
 
 {% block content %}
     <div>
-    
+        <button>
+            <a href="{% url 'admin:product_create' category.pk %}">новый продукт</a>
+        </button>
+
+        {% for object in objects %}
+            <div>
+                <img src="/media/{{ object.image|default:'products_images/default.jpg' }}" alt="{{ object.name }}">
+                <div>
+                    {{ object.name|title }}
+                </div>
+                <div>
+                    <button>
+                        <a href="{% url 'admin:product' object.pk %}">подробнее</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'admin:product_update' object.pk %}">редактировать</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'admin:product_delete' object.pk %}">удалить</a>
+                    </button>
+                </div>
+                <div>
+                    <b>цена</b>
+                    <p>{{ object.price }} руб</p>
+                    <b>количество</b>
+                    <p>{{ object.quantity }}</p>
+                </div>
+                <div>
+                    {{ object.short_desc|title }}
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
