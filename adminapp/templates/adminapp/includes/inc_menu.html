@@ -1,16 +1,16 @@
-<ul class="">
-    <li>
-        <a href="{% url 'main' %}">на сайт</a>
+<ul class="nav">
+    <li class="nav-item">
+        <a href="{% url 'main' %}" class="nav-link">на сайт</a>
     </li>
-    <li>
-        <a href="{% url 'admin:users' %}" class="{% if request.resolver_match.url_name == 'users' %}active{% endif %}">
+    <li class="nav-item">
+        <a href="{% url 'admin:users' %}" class="nav-link {% if request.resolver_match.url_name == 'users' %}active{% endif %}">
             пользователи
         </a>
     </li>
-    <li>
+    <li class="nav-item">
         <a href="{% url 'admin:categories' %}"
-           class="{% if request.resolver_match.url_name == 'categories' or category.name %}active{% endif %}">
-            категории {% if catogory %}:<span>{{ category.name }}</span>{% endif %}
+           class="nav-link {% if request.resolver_match.url_name == 'categories' or category.name %}active{% endif %}">
+            категории {% if category %}:<span>{{ category.name }}</span>{% endif %}
         </a>
     </li>
 </ul>
