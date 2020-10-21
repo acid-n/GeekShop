@@ -4,13 +4,13 @@
 
 {% block content %}
     <div>
-        Уверены, что хотите удалить категорию {{ object.name }}?
-        <form action="{% url 'admin:category_delete' object.pk %}" method="post">
+        Уверены, что хотите удалить продукт {{ product_to_delete.name }}?
+        <form action="{% url 'admin:product_delete' product_to_delete.pk %}" method="post">
             {% csrf_token %}
             <input class="btn btn-danger" type="submit" value="удалить">
         </form>
         <button class="btn btn-success">
-            <a href="{% url 'admin:categories' %}">отмена</a>
+            <a href="{% url 'admin:products' product_to_delete.category.pk %}">отмена</a>
         </button>
     </div>
 {% endblock %}
