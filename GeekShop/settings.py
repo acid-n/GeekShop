@@ -132,3 +132,24 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 
 LOGIN_URL = '/auth/login'
 
+# DOMAIN_NAME = 'http://localhost:8000'
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'django@geekshop.local'
+EMAIL_HOST_PASSWORD = 'geekshop'
+EMAIL_USE_SSL = False
+
+# EMAIL_HOST = 'smtp.yandex.ru'
+# EMAIL_HOST_PASSWORD = 'password'
+# EMAIL_HOST_USER = 'my_email@yandex.ru'
+# EMAIL_PORT = '465'
+# EMAIL_USE_SSL = True
+
+# вариант sudo python3 -m smtpd -n -c DebuggingServer localhost:25
+# EMAIL_HOST_USER, EMAIL_HOST_PASSWORD = None, None
+
+# вариант логирования сообщений почты в виде файлов вместо отправки
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = 'tmp/email-messages/'
+
