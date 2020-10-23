@@ -7,12 +7,6 @@ from mainapp.models import Product, ProductCategory, Contacts
 import random
 
 
-def get_basket(user):
-    if user.is_authenticated:
-        return Basket.objects.filter(user=user)
-    return []
-
-
 def get_hot_product():
     products_list = Product.objects.all()
     return random.sample(list(products_list), 1)[0]
@@ -29,7 +23,7 @@ def main(request):
     # print(request.resolver_match)
 
     products_list = Product.objects.all()[:3]
-    content = {'title': title, 'products': products_list, 'basket': get_basket(request.user)}
+    content = {'title': title, 'products': products_list}
     return render(request, 'mainapp/index.html', content)
 
 
@@ -63,7 +57,6 @@ def products(request, pk=None, page=1):
             'links_menu': links_menu,
             'category': category,
             'products': products_paginator,
-            'basket': get_basket(request.user),
         }
         return render(request, 'mainapp/products_list.html', content)
 
@@ -74,7 +67,6 @@ def products(request, pk=None, page=1):
         'links_menu': links_menu,
         'same_products': same_products,
         'hot_product': hot_product,
-        'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/products.html', content)
 
@@ -85,7 +77,6 @@ def contact(request):
     content = {
         'title': title,
         'contacts': contacts_list,
-        'basket': get_basket(request.user),
     }
     return render(request, 'mainapp/contact.html', content)
 
@@ -96,7 +87,6 @@ def product(request, pk):
     content = {
         'title': title,
         'product': product_item,
-        'basket': get_basket(request.user),
         'links_menu': ProductCategory.objects.all(),
         'same_products': get_same_products(product_item)
     }

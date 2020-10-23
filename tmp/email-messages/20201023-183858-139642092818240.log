@@ -1,0 +1,13 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0JDQutGC0LjQstCw0YbQuNGPINC/0L7Qu9GM0LfQvtCy0LDRgtC10LvRjyBkajU=?=
+From: django@geekshop.local
+To: dj5@test.ru
+Date: Fri, 23 Oct 2020 18:38:58 -0000
+Message-ID: <160347833835.31822.14490295453170573581@nikolay-MS-7918>
+
+Для подтверждения перейдите по ссылке
+ http://localhost:8088/auth/verify/dj5@test.ru/fc32fb995a2ca7690e9347800c32233e00c1f45f/
+-------------------------------------------------------------------------------
