@@ -10,6 +10,7 @@
             <h1 class="h3 mb-3 font-weight-normal">{{ title|title }}</h1>
             {% csrf_token %}
             {{ edit_form.as_p }}
+            {{ profile_form.as_p }}
             <button class="btn btn-lg btn-primary btn-block" type="submit">Сохранить</button>
             <a class="btn btn-link" href="{% url 'main' %}">на главную</a>
         </form>

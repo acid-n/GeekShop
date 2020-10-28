@@ -36,6 +36,9 @@
             </button>
             <a class="btn btn-link" href="{% url 'auth:register' %}">регистрация</a>
         </form>
+        <button class="btn form-control">
+            <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/" class="">Войти через ВК</a>
+        </button>
     </div>
 
 {% endblock %}
