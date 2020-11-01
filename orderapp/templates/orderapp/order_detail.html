@@ -1,0 +1,19 @@
+{% extends 'orderapp/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% include 'orderapp/includes/inc_order_summary.html' %}
+    <div class="">
+        {% for item in object.orderitems.select_related %}
+            <div class="">
+                <img src="{{ item.product.image }}" alt="{{ item.product.short_desc }}">
+                <span class="">{{ item.product.category.name }}</span>
+                <span class="">{{ item.product.name }}</span>
+                <span class="">{{ item.product.price }}&nbsp;руб</span>
+                <span class="">x {{ item.quantity }} шт</span>
+                <span class="">= {{ item.get_product_cost }}&nbsp;руб</span>
+            </div>
+        {% endfor %}
+    </div>
+    {% include 'orderapp/includes/inc_order_actions.html' %}
+{% endblock %}

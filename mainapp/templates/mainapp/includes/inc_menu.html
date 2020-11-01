@@ -25,7 +25,7 @@
             </a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" href="{% url 'auth:edit' %}">Профиль</a>
-                <a class="dropdown-item" href="#">Заказы</a>
+                <a class="dropdown-item" href="{% url 'order:orders_list' %}">Заказы</a>
             </div>
         </li>
         {% if user.is_superuser %}

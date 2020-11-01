@@ -25,7 +25,7 @@ class Order(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='Пользователь')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
-    status = models.CharField(max_length=3, choices=ORDER_STATUSES)
+    status = models.CharField(max_length=3, choices=ORDER_STATUSES, default=FORMING)
     is_active = models.BooleanField(default=True, verbose_name='Активен')
 
     class Meta:
@@ -47,6 +47,14 @@ class Order(models.Model):
     def get_total_cost(self):
         items = self.orderitems.select_related()
         return sum(list(map(lambda x: x.quantity * x.product.price, items)))
+
+    def delete(self):
+        for item in self.orderitems.select_related():
+            item.product.quantity += item.quantity
+            item.product.save()
+
+        self.is_active = False
+        self.save()
 
 
 class OrderItem(models.Model):
