@@ -43,7 +43,6 @@ class OrderItemsCreate(CreateView):
                 formset = OrderFormSet()
 
         data['orderitems'] = formset
-
         return data
 
     def form_valid(self, form):
@@ -73,7 +72,7 @@ class OrderItemsUpdate(UpdateView):
         OrderFormSet = inlineformset_factory(Order, OrderItem, form=OrderItemForm, extra=1)
 
         if self.request.POST:
-            formset = OrderFormSet(self.request.POST, instance=self.object)
+            data['orderitems'] = OrderFormSet(self.request.POST, instance=self.object)
         else:
             formset = OrderFormSet(instance=self.object)
             for form in formset.forms:
