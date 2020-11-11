@@ -11,8 +11,16 @@ class Basket(models.Model):
     add_datetime = models.DateTimeField(auto_now_add=True)
 
     @staticmethod
+    def get_item(pk):
+        return Basket.objects.get(pk=pk)
+
+    @staticmethod
     def get_items(user):
         return Basket.objects.filter(user=user).order_by('product__category')
+
+    @staticmethod
+    def get_product(user, product):
+        return Basket.objects.filter(user=user, product=product).select_related()
 
     @property
     def product_cost(self):
@@ -29,3 +37,8 @@ class Basket(models.Model):
         _items = Basket.objects.filter(user=self.user)
         _total_cost = sum(list(map(lambda x: x.product_cost, _items)))
         return _total_cost
+
+    # def save(self, *args, **kwargs):
+    #     self.product.quantity -= self.quantity
+    #     self.product.save()
+    #     super(Basket, self).save(*args, **kwargs)

@@ -1,8 +1,10 @@
+import urllib
 from collections import OrderedDict
 from datetime import datetime
 from urllib.parse import urlencode, urlunparse
 
 import requests
+from django.conf import settings
 from django.utils import timezone
 from social_core.exceptions import AuthForbidden
 
@@ -18,7 +20,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
                           'api.vk.com',
                           '/method/users.get',
                           None,
-                          urlencode(OrderedDict(fields=','.join(('bdate', 'sex', 'about', 'photo_200')),
+                          urlencode(OrderedDict(fields=','.join(('bdate', 'sex', 'about', 'photo_max_orig')),
                                                 access_token=response['access_token'],
                                                 v='5.124')),
                           None
@@ -35,11 +37,15 @@ def save_user_profile(backend, user, response, *args, **kwargs):
     if data['about']:
         user.shopuserprofile.about_me = data['about']
 
-    if data['photo_200']:
-        get_photo = requests.get(data['photo_200'])
-        with open(f'{BASE_DIR}/media/users_avatars/{user.id}.jpg', 'wb') as photo:
-            photo.write(get_photo.content)
-        user.avatar = f'users_avatars/{user.id}.jpg'
+    if data['photo_max_orig']:
+
+        urllib.request.urlretrieve(data['photo_max_orig'], f'{settings.MEDIA_ROOT}/users_avatars/{user.pk}.jpg')
+        user.avatar = f'users_avatars/{user.pk}.jpg'
+
+        # get_photo = requests.get(data['photo_200'])
+        # with open(f'{BASE_DIR}/media/users_avatars/{user.id}.jpg', 'wb') as photo:
+        #     photo.write(get_photo.content)
+        # user.avatar = f'users_avatars/{user.id}.jpg'
 
     if data['bdate']:
         bdate = datetime.strptime(data['bdate'], '%d.%m.%Y').date()
