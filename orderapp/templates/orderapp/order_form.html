@@ -3,7 +3,7 @@
 
 {% block content %}
     {% include 'orderapp/includes/inc_order_summary.html' %}
-    <div class="">
+    <div class="order_form">
         <form action="" method="post">
             {% csrf_token %}
             {{ form.as_p }}
