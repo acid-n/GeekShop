@@ -91,6 +91,8 @@ DATABASES = {
         'NAME': 'geekshop',
         'USER': 'django',
         'PASSWORD': 'geekbrains',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
