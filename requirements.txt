@@ -26,5 +26,4 @@ social-auth-app-django==4.0.0
 social-auth-core==3.3.3
 sqlparse==0.3.1
 urllib3==1.25.11
-virtualenv==20.0.35
 wrapt==1.12.1
