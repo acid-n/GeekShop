@@ -8,7 +8,7 @@ import random
 
 
 def get_hot_product():
-    products_list = Product.objects.all()
+    products_list = Product.objects.all().select_related('category')
     return random.sample(list(products_list), 1)[0]
 
 
