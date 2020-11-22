@@ -23,7 +23,7 @@ def main(request):
 
     # print(request.resolver_match)
 
-    products_list = Product.objects.all()[:3]
+    products_list = Product.objects.all().select_related('category')[:3]
     content = {'title': title, 'products': products_list}
     return render(request, 'mainapp/index.html', content)
 
