@@ -88,7 +88,7 @@ def product(request, pk):
     content = {
         'title': title,
         'product': product_item,
-        'links_menu': ProductCategory.objects.all(),
+        'links_menu': ProductCategory.objects.all().select_related('category'),
         'same_products': get_same_products(product_item)
     }
 
