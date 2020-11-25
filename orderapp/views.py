@@ -11,12 +11,19 @@ from mainapp.models import Product
 from orderapp.forms import OrderItemForm
 from orderapp.models import Order, OrderItem
 
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+
 
 class OrderList(ListView):
     model = Order
 
     def get_queryset(self):
         return Order.objects.filter(user=self.request.user)
+
+    @method_decorator(login_required())
+    def dispatch(self, *args, **kwargs):
+        return super(ListView, self).dispatch(*args, **kwargs)
 
 
 class OrderItemsCreate(CreateView):
