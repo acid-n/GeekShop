@@ -40,7 +40,7 @@ def products(request, pk=None, page=1):
                 'pk': 0,
                 'name': 'все',
             }
-            products = Product.objects.all().order_by('price')
+            products = Product.objects.all().order_by('price').select_related('category')
         else:
             category = get_object_or_404(ProductCategory, pk=pk)
             products = Product.objects.filter(category__pk=pk).order_by('price')
